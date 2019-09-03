@@ -350,7 +350,7 @@ public class SPPermissionDialogController: UIViewController {
             let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.handleGesture(sender:)))
             panGesture.maximumNumberOfTouches = 1
             self.areaView.addGestureRecognizer(panGesture)
-        } else {
+        } else if dataSource?.isDismissable ?? true {
             let tapGester = UITapGestureRecognizer.init(target: self, action: #selector(self.handleTap))
             tapGester.cancelsTouchesInView = false
             self.backgroundView.addGestureRecognizer(tapGester)
