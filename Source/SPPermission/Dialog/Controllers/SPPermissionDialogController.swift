@@ -207,7 +207,7 @@ public class SPPermissionDialogController: UIViewController {
             view.updateStyle()
         }
     }
-    
+
     func present(on viewController: UIViewController) {
         self.animator.removeAllBehaviors()
         self.areaView.alpha = 0
@@ -282,6 +282,58 @@ public class SPPermissionDialogController: UIViewController {
                 self.animator.removeAllBehaviors()
                 self.areaView.transform = .identity
                 self.delegate?.didHide?()
+            })
+        })
+    }
+
+    func embed(in container: UIView, parent: UIViewController?) {
+        self.animator.removeAllBehaviors()
+        self.areaView.alpha = 0
+        self.closeButton.alpha = 0
+        self.bottomLabel.alpha = 0
+        self.areaView.transform = .identity
+        self.modalPresentationStyle = .overCurrentContext
+        self.modalPresentationCapturesStatusBarAppearance = true
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(view)
+
+        view.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+
+        willMove(toParent: parent)
+        parent?.addChild(self)
+        didMove(toParent: parent)
+
+        self.isHiddenStatusBar = true
+        self.areaView.center = CGPoint.init(
+            x: self.view.center.x,
+            y: self.view.center.y + (self.dataSource?.startTransitionYoffset ?? self.view.center.y * 0.2)
+        )
+        SPPermissionStyle.Animation.base(0.8, animations: {
+            self.backgroundView.setGradeAlpha(0.07, blurRaius: 4)
+        })
+        SPPermissionStyle.Delay.wait(0.21, closure: {
+            self.snapBehavior = UISnapBehavior(item: self.areaView, snapTo: self.areaCenter)
+            self.animator.addBehavior(self.snapBehavior)
+            SPPermissionStyle.Animation.base(0.3, animations: {
+                self.areaView.alpha = 1
+            })
+            SPPermissionStyle.Delay.wait(0.2, closure: {
+                SPPermissionStyle.Animation.base(0.3, animations: {
+                    self.bottomLabel.alpha = 1
+                    if let showCloseButton = self.dataSource?.showCloseButton {
+                        if showCloseButton {
+                            self.closeButton.alpha = 1
+                        }
+                    } else {
+                        if !(self.dataSource?.dragEnabled ?? true) {
+                            self.closeButton.alpha = 1
+                        }
+                    }
+                })
             })
         })
     }
