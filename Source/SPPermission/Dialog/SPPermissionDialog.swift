@@ -24,9 +24,9 @@ import UIKit
 extension SPPermission {
     
     public enum Dialog {
-        
+
         public static func request(with permissions: [SPPermissionType], on viewController: UIViewController, delegate: SPPermissionDialogDelegate? = nil, dataSource: SPPermissionDialogDataSource? = nil) {
-            if permissions.isEmpty {  return }
+            if permissions.isEmpty { return }
             let controller = SPPermissionDialogController(permissions: permissions)
             controller.delegate = delegate
             controller.dataSource = dataSource
@@ -38,6 +38,19 @@ extension SPPermission {
                 controller.present(on: viewController)
             }
         }
+
+        public static func embed(with permissions: [SPPermissionType], in view: UIView, parent: UIViewController?, delegate: SPPermissionDialogDelegate? = nil, dataSource: SPPermissionDialogDataSource? = nil) -> SPPermissionDialogController? {
+            if permissions.isEmpty { return nil }
+            let controller = SPPermissionDialogController(permissions: permissions)
+            controller.delegate = delegate
+            controller.dataSource = dataSource
+            controller.colorSource = dataSource as? SPPermissionDialogColorSource
+
+            controller.embed(in: view, parent: parent)
+
+            return controller
+        }
+
     }
 }
 
