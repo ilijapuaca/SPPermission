@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F4824FEA22ABAAB700A0A487 /* Configuration.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F4824FE922ABAAB700A0A487 /* Configuration.xcconfig */; };
 		F4F8D4CF22A6E8F500C32329 /* SPPermissionPhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F8D4A822A6E8F500C32329 /* SPPermissionPhotoLibrary.swift */; };
 		F4F8D4D022A6E8F500C32329 /* SPPermissionLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F8D4A922A6E8F500C32329 /* SPPermissionLocation.swift */; };
 		F4F8D4D122A6E8F500C32329 /* SPPermissionMediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F8D4AA22A6E8F500C32329 /* SPPermissionMediaLibrary.swift */; };
@@ -258,7 +257,7 @@
 		F4FAD95D225371A20027C912 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Ivan Vorobei";
 				TargetAttributes = {
 					F4FAD965225371A20027C912 = {
@@ -272,6 +271,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = F4FAD95C225371A20027C912;
 			productRefGroup = F4FAD967225371A20027C912 /* Products */;
@@ -288,7 +288,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4824FEA22ABAAB700A0A487 /* Configuration.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
