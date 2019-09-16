@@ -70,6 +70,7 @@ extension SPPermission {
     @objc optional var allowedTitle: String { get }
     @objc optional var bottomComment: String { get }
     @objc optional var showCloseButton: Bool { get }
+    @objc optional var showAlertIfDenied: Bool { get } // default value is true
     @objc optional var dragEnabled: Bool { get }
     @objc optional var isDismissable: Bool { get }
     @objc optional func name(for permission: SPPermissionType) -> String?
